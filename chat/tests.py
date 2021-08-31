@@ -11,17 +11,19 @@ class ChatTests(ChannelsLiveServerTestCase):
         super().setUpClass()
         try:
             # NOTE: Requires "chromedriver" binary to be installed in $PATH
-            cls.driver = webdriver.Chrome('chat/chromedriver.exe')
+            cls.driver = webdriver.Chrome('chat\chromedriver.exe') 
+
         except:
             super().tearDownClass()
             raise
 
     @classmethod
     def tearDownClass(cls):
-        cls.driver.quit()
-        super().tearDownClass()
+        cls.driver.close()
+        # super().tearDownClass()
 
-    def test_when_chat_message_posted_then_seen_by_everyone_in_same_room(self):
+    def test_when_chat_message_posted_then_seen_by_everyone_in_same_room(self): # 실행 안됨
+        print('test')
         try:
             self._enter_chat_room('room_1')
 
@@ -41,6 +43,7 @@ class ChatTests(ChannelsLiveServerTestCase):
             self._close_all_new_windows()
 
     def test_when_chat_message_posted_then_not_seen_by_anyone_in_different_room(self):
+        print('test')
         try:
             self._enter_chat_room('room_1')
 
